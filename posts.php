@@ -27,9 +27,9 @@ if (!isset($_GET['category'])) {
                     </div>
                 </div>
         <?php }
-        } else {
-            header("location: 404.php");
-        } ?>
+        } else { ?>
+           <h3>No Post Available in this Category</h3>
+    <?php    } ?>
     </div>
 </div>
 <?php
