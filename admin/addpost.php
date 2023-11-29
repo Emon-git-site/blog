@@ -6,6 +6,10 @@
 		
             <div class="box round first grid">
                 <h2>Add New Post</h2>
+            <?php
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $name = mysqli_real_escape_string($db->link, $_POST['name']);
+            ?>
                 <div class="block">               
                  <form action="" method="" enctype="multipart/form-data">
                     <table class="form">
@@ -15,7 +19,7 @@
                                 <label>Title</label>
                             </td>
                             <td>
-                                <input type="text" placeholder="Enter Post Title..." class="medium" />
+                                <input type="text" name="title" placeholder="Enter Post Title..." class="medium" />
                             </td>
                         </tr>
                      
@@ -24,11 +28,18 @@
                                 <label>Category</label>
                             </td>
                             <td>
-                                <select id="select" name="select">
+                                <select id="select" name="cat">
                                     <option value="">Select Category</option>
-                                    <option value="1">Category One</option>
-                                    <option value="2">Category Two</option>
-                                    <option value="3">Cateogry Three</option>
+                                <?php
+                                    $query = "select * from tbl_category";
+                                    $category = $db->select($query);
+                                    if($category){
+                                        while($result = $category->fetch_assoc()){ ?>
+                                         <option value="<?=$result['id'] ?>"><?=$result['name'] ?></option>
+                              <?php          }
+                                    }
+                                ?>
+
                                 </select>
                             </td>
                         </tr>
@@ -38,7 +49,7 @@
                                 <label>Upload Image</label>
                             </td>
                             <td>
-                                <input type="file" />
+                                <input type="file" name="image"/>
                             </td>
                         </tr>
                         <tr>
@@ -46,7 +57,15 @@
                                 <label>Content</label>
                             </td>
                             <td>
-                                <textarea class="tinymce"></textarea>
+                                <textarea class="tinymce" name="body"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Tags</label>
+                            </td>
+                            <td>
+                                <input type="text" name="tags" placeholder="Enter Tags..." class="medium" />
                             </td>
                         </tr>
 						<tr>
