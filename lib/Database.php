@@ -36,5 +36,17 @@ class Database {
       $insertRow = $this->link->query($query) or die($this->link->error . __LINE__);
       return $insertRow ? $insertRow : false;
   }
+
+  // Update data
+  public function update($query) {
+      $updateRow = $this->link->query($query) or die($this->link->error . __LINE__);
+      return $updateRow ? $updateRow : false;
+  }
+
+  // Delete data
+  public function delete($query) {
+      $deleteRow = $this->link->query($query) or die($this->link->error . __LINE__);
+      return $deleteRow ? $deleteRow : false;
+  }
 }
 ?>

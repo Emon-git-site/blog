@@ -7,11 +7,29 @@
             <div class="box round first grid">
                 <h2>Add New Category</h2>
                <div class="block copyblock"> 
-                 <form>
+               <?php
+		  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $name = $_POST['name'];
+			 $name = mysqli_real_escape_string($db->link, $name);
+
+             if(empty($name)){
+                echo "<span class='error'>Field must not be empty.</span>";
+             }else{
+                $query = "insert into tbl_category(name) values ('$name')";
+                $categoryInsert = $db->insert($query);
+                if($categoryInsert){
+                    echo "<span class='success'>Category inserted Successfully.</span>";
+                }else{
+                    echo "<span class='error'>Category Not Inserted.</span>";
+                }
+             }
+          }  
+          ?>
+                 <form action="" method="post">
                     <table class="form">					
                         <tr>
                             <td>
-                                <input type="text" placeholder="Enter Category Name..." class="medium" />
+                                <input type="text" name="name" placeholder="Enter Category Name..." class="medium" />
                             </td>
                         </tr>
 						<tr> 

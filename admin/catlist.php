@@ -15,45 +15,18 @@
 						</tr>
 					</thead>
 					<tbody>
+					<?php
+					  $query = "select * from tbl_category order by id desc ";
+					  $category =  $db->select($query);
+					  if($category){
+						$serial = 0;
+						while($result = $category->fetch_assoc()){
+							$serial++;  ?>
 						<tr class="odd gradeX">
-							<td>01</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>02</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="odd gradeX">
-							<td>03</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>04</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-							<tr class="odd gradeX">
-							<td>05</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>06</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="odd gradeX">
-							<td>07</td>
-							<td>Internet</td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
-						</tr>
-						<tr class="even gradeC">
-							<td>08</td>
-							<td>Explorer </td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
+							<td><?=$serial; ?></td>
+							<td><?=$result['name']; ?></td>
+							<td><a href="editCategory.php?categoryId=<?=$result['id']; ?>">Edit</a> || <a onclick="return confirm('Are you want to delete the category?')" href="deleteCategory.php?categoryId=<?=$result['id']; ?>">Delete</a></td>
+							<?php  }  } ?>
 						</tr>
 					</tbody>
 				</table>
