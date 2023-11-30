@@ -32,27 +32,37 @@
                 $file_ext = strtolower(end($div));
                 $uploaded_image = substr(md5(time()), 0, 10).'.'.$file_ext;
 
-                if($title == '' ||  $cat == '' ||  $body == '' ||  $tags == '' ||  $author == '' ||  $file_name == '' ){
+                if($title == '' ||  $cat == '' ||  $body == '' ||  $tags == '' ||  $author == '' ){
                     echo "<span class='error'>Field must not be empty.</span>";
                 }
-                elseif ($file_size >1048567) {
-                    echo "<span class='error'>Image Size should be less then 1MB!</span>";
-                   } 
-                   elseif (in_array($file_ext, $permited) === false) {
-                    echo "<span class='error'>You can upload only:-" .implode(', ', $permited)."</span>";
-                   }
-                    else{
-                        move_uploaded_file($file_temp, "upload/".$uploaded_image);
-                        $query = "INSERT INTO tbl_post(cat, title, body, image, author, tags)  VALUES('$cat', '$title', '$body', '$uploaded_image', '$author', '$tags' )";
-                        $inserted_rows = $db->insert($query);
-                        if ($inserted_rows) {
-                            echo "<span class='success'>Post Inserted Successfully. </span>";
-                        }
-                        else {
-                            echo "<span class='error'>Post Not Inserted !</span>";
-                        }
-            }
-        }
+                if(!empty($file_name)){
+                    if ($file_size >1048567) {
+                        echo "<span class='error'>Image Size should be less then 1MB!</span>";
+                    } 
+                    elseif (in_array($file_ext, $permited) === false) {
+                        echo "<span class='error'>You can upload only:-" .implode(', ', $permited)."</span>";
+                    }
+                        else{
+                            move_uploaded_file($file_temp, "upload/".$uploaded_image);
+                            $query = "update tbl_post set cat = '$cat', title = '$title', body = '$body', image = '$uploaded_image', author = '$author', tags = '$tags' where id ='$postId ' ";
+                            $updated_rows = $db->update($query);
+                            if ($updated_rows) {
+                                echo "<span class='success'>Post Updated Successfully. </span>";
+                            }
+                            else {
+                                echo "<span class='error'>Post Not Updated !</span>";
+                            }
+                    }
+             }else{
+                $query = "update tbl_post set cat = '$cat', title = '$title', body = '$body', author = '$author', tags = '$tags' where id ='$postId ' ";
+                $updated_rows = $db->update($query);
+                if ($updated_rows) {
+                    echo "<span class='success'>Post Updated Successfully. </span>";
+                }
+                else {
+                    echo "<span class='error'>Post Not Updated !</span>";
+                }
+             }
             ?>
             <?php
                 // post data show
