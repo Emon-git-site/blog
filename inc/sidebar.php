@@ -18,7 +18,7 @@
  	<div class="samesidebar clear">
  		<h2>Latest articles</h2>
 		 <?php
-				 $query = "select * from tbl_post limit 5 ";
+				 $query = "select * from tbl_post limit 4 ";
 				 $post = $db->select($query);
 				 if($post){
 					 while ($result = $post->fetch_assoc()){ ?> 
