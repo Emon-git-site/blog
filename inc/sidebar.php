@@ -24,7 +24,7 @@
 					 while ($result = $post->fetch_assoc()){ ?> 
  		<div class="popular clear">
  			<h3><a href="post.php?id=<?=$result['id'] ?>"><?=$result['title'] ?></a></h3>
- 			<a href="post.php?id=<?=$result['id'] ?>"><img src="admin/upload/<?=$result['image  '] ?>" alt="post image" /></a>
+ 			<a href="post.php?id=<?=$result['id'] ?>"><img src="admin/upload/<?=$result['image'] ?>" alt="post image" /></a>
 			 <?=$fm->textShorten($result['body'], 120 ); ?>
  		</div>
 		 <?php }
