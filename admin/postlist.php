@@ -29,17 +29,17 @@
 							while($result = $post->fetch_assoc()){ 
 								$serial++ ?>
 
-						?>
+					
 						<tr class="odd gradeX">
 							<td><?=$serial ?></td>
-							<td><?=$result['title'] ?></td>
+							<td><a href="editpost.php?editPostId=<?=$result['id'] ?>"><?=$result['title'] ?></a></td>
 							<td><?=$fm->textShorten($result['body'], 60) ?></td>
 							<td><?=$result['name'] ?></td>
 							<td><img src="upload/<?=$result['image'] ?>" height="40px" width="60px"></td>
 							<td><?=$result['author'] ?></td>
 							<td><?=$result['tags'] ?></td>
 							<td><?=$fm->formatDate($result['date']) ?></td>
-							<td><a href="">Edit</a> || <a href="">Delete</a></td>
+							<td><a href="editpost.php?editPostId=<?=$result['id'] ?>">Edit</a> || <a href="?deletePostId=<?=$result['id'] ?>" onclick="return confirm('Are you sure want to delete?') ">Delete</a></td>
 						</tr>
 							
 			<?php	}
