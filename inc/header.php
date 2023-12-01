@@ -46,9 +46,16 @@ $(window).load(function() {
 	<div class="headersection templete clear">
 		<a href="index.php">
 			<div class="logo">
-				<img src="images/logo.png" alt="Logo"/>
-				<h2>Website Title</h2>
-				<p>Our website description</p>
+				<?php
+				  $query = "select * from tbl_slogan where id = '1'";
+				  $getLogo = $db->select($query);
+				  if($getLogo){
+					$findLogo = $getLogo->fetch_assoc();
+				  }
+				?>
+				<img src="admin/upload/<?=$findLogo['logo']?>" alt="Logo" width="40px" height="60px"/>
+				<h2><?=$findLogo['title']?></h2>
+				<p><?=$findLogo['slogan']?></p>
 			</div>
 		</a>
 		<div class="social clear">
