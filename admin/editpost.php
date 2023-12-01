@@ -34,7 +34,7 @@
 
                 if($title == '' ||  $cat == '' ||  $body == '' ||  $tags == '' ||  $author == '' ){
                     echo "<span class='error'>Field must not be empty.</span>";
-                }
+                }else{
                 if(!empty($file_name)){
                     if ($file_size >1048567) {
                         echo "<span class='error'>Image Size should be less then 1MB!</span>";
@@ -63,6 +63,8 @@
                     echo "<span class='error'>Post Not Updated !</span>";
                 }
              }
+            }
+        }
             ?>
             <?php
                 // post data show
