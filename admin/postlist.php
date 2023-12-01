@@ -39,7 +39,7 @@
 							<td><?=$result['author'] ?></td>
 							<td><?=$result['tags'] ?></td>
 							<td><?=$fm->formatDate($result['date']) ?></td>
-							<td><a href="editpost.php?editPostId=<?=$result['id'] ?>">Edit</a> || <a href="?deletePostId=<?=$result['id'] ?>" onclick="return confirm('Are you sure want to delete?') ">Delete</a></td>
+							<td><a href="editpost.php?editPostId=<?=$result['id'] ?>">Edit</a> || <a href="deletePost.php?deletePostId=<?=$result['id'] ?>" onclick="return confirm('Are you sure want to delete?') ">Delete</a></td>
 						</tr>
 							
 			<?php	}
