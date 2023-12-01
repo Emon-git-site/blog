@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             $query = "select * from tbl_slogan where id = '1' ";
             $blogTitle = $db->select($query);
-            if ($blogTitle && $result = $blogTitle->fetch_assoc()) { ?>
+            if ($result = $blogTitle->fetch_assoc()) { ?>
                 <div class="leftsite">
                     <form action="" method="post" enctype="multipart/form-data">
                         <table class="form">

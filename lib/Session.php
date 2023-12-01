@@ -18,6 +18,12 @@ class Session{
         }
     }         
 
+    public static function checkLogin(){
+        self::sessionInit();
+        if(self::get('login') == true ){
+            header('location: index.php');
+        }
+    }
     public static function checkSession(){
         self::sessionInit();
         if(self::get('login') == false ){

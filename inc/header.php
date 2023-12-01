@@ -60,10 +60,14 @@ $(window).load(function() {
 		</a>
 		<div class="social clear">
 			<div class="icon clear">
-				<a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-				<a href="#" target="_blank"><i class="fa fa-google-plus"></i></a>
+			      <?php
+                    $query = "select * from tbl_social where id = '1' ";
+                    $socialLink = $db->select($query);
+                    $social = $socialLink->fetch_assoc()  ?>
+				<a href="<?=$social['fb']?>" target="_blank"><i class="fa fa-facebook"></i></a>
+				<a href="<?=$social['tw']?>" target="_blank"><i class="fa fa-twitter"></i></a>
+				<a href="<?=$social['ln']?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+				<a href="<?=$social['gp']?>" target="_blank"><i class="fa fa-google-plus"></i></a>
 			</div>
 			<div class="searchbtn clear">
 			<form action="" method="get">
