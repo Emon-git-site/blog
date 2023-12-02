@@ -5,6 +5,10 @@ require_once "helpers/format.php";
 $db = new Database();
 $fm = new Format();
 ?>
+<?php
+  $query = "select * from tbl_copyright where id = '1' ";
+  $copyrightLink = $db->select($query);
+  $copyright = $copyrightLink->fetch_assoc()  ?> 
 </div>
 <div class="footersection templete clear">
   <div class="footermenu clear">
@@ -15,7 +19,7 @@ $fm = new Format();
         <li><a href="#">Privacy</a></li>
     </ul>
   </div>
-  <p>&copy; Copyright Training with live project.</p>
+  <p>&copy;<?=$copyright['note']?> </p>
 </div>
 <div class="fixedicon clear">
 <?php
