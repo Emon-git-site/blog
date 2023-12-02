@@ -1,13 +1,13 @@
 <?php
+require_once "inc/header.php";
+?>
+<?php
     if(!isset($_GET['pageId'])){
         header('location:404.php');
     }else{
         $pageId = $_GET['pageId'];
     }
  ?>
-<?php
-require_once "inc/header.php";
-?>
 
 <?php
 $query = "select * from tbl_page where id='$pageId' ";

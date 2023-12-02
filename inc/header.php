@@ -10,13 +10,25 @@ $fm = new Format();
 <head>
 	<?php
 
-	 if(!empty($pageId)){
+	 if(isset($_GET['pageId'])){
+	$pageId = $_GET['pageId'];
 	 $query = "select * from tbl_page where id='$pageId' ";
 	 $pages = $db->select($query);
 	 if($pages){
 		 while($result =$pages->fetch_assoc()){ ?>
 		 	<title><?= $result['name'];?>-<?= TITLE;?></title>
-	<?php	  } }  } else{ ?>
+	<?php	  } }  } 
+	
+	elseif(isset($_GET['id'])){
+	$postId = $_GET['id'];
+	 $query = "select * from tbl_post where id='$postId' ";
+	 $post = $db->select($query);
+	 if($post){
+		 while($result =$post->fetch_assoc()){ ?>
+		 	<title><?= $result['title'];?>-<?= TITLE;?></title>
+	<?php	  } }  } 
+
+	else{ ?>
 		<title><?=$fm->title();?>-<?= TITLE;?></title>
 		<?php }  ?>
 	<title><?= TITLE;?></title>
