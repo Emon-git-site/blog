@@ -9,9 +9,19 @@
         $pageId = $_GET['pageId'];
     }
  ?>
+ <style>
+    .actionDelete{
+    border: 1px solid #ddd;
+    color: #444;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 2px 10px;   
+    font-weight: normal;
+    }
+ </style>
         <div class="grid_10">		
             <div class="box round first grid">
-                <h2> Page</h2>
+                <h2>Edit Page</h2>
                 <div class="block">   
              <?php
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -31,7 +41,7 @@
             }
         }
             ?>
-         <?php   
+         <?php
             $query = "select * from tbl_page where id='$pageId' ";
             $pages = $db->select($query);
             if($pages){
@@ -59,7 +69,8 @@
                          <tr>
                              <td></td>
                              <td>
-                                 <input type="submit" name="submit" Value="Save" />
+                                 <input type="submit" name="submit" Value="Update" />
+                                 <span class="actionDelete"><a href="deletePage.php?actionPageId=<?=$page['id']?>" onclick="return confirm('Are you sure to Delete')">Delete</a></span>
                              </td>
                          </tr>
                      </table>
