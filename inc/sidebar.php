@@ -10,7 +10,7 @@
  					<li><a href="posts.php?category=<?= $result['id'] ?>"><?= $result['name'] ?></a></li>
  				<?php }
 				} else { ?>
- 				<li>NO Created Created</li>
+ 				<li>NO Created </li>
  			<?php	}  ?>
  		</ul>
  	</div>
