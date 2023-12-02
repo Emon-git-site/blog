@@ -20,9 +20,7 @@
             if($pages){
                 while($result =$pages->fetch_assoc()){ ?>
                     <li><a href="page.php?pageId=<?=$result['id']?>"><?=$result['name']?></a> </li>
-         <?php    }
-             }
-              ?>
+         <?php    }   }  ?>
                             </ul>
                         </li>
                         <li><a class="menuitem">Category Option</a>
