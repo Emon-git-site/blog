@@ -1,3 +1,9 @@
+ <style>
+	.category{
+		text-decoration: none;
+		color: black;
+	}
+ </style>
  <div class="sidebar clear">
  	<div class="samesidebar clear">
  		<h2>Categories</h2>
@@ -7,7 +13,7 @@
 				$category = $db->select($query);
 				if ($category) {
 					while ($result = $category->fetch_assoc()) { ?>
- 					<li><a href="posts.php?category=<?= $result['id'] ?>"><?= $result['name'] ?></a></li>
+ 					  <a class="category" href="posts.php?category=<?= $result['id'] ?>"><li><?= $result['name'] ?></li></a><hr> 
  				<?php }
 				} else { ?>
  				<li>NO Created </li>

@@ -3,6 +3,7 @@ define("DB_HOST", "localhost");
 define("DB_USER", "root");
 define("DB_PASS", "");
 define("DB_NAME", "blog");
+define("TITLE", "Training with live project");
 
 class Database {
   private $host = DB_HOST;

@@ -8,7 +8,18 @@ $fm = new Format();
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Basic Website</title>
+	<?php
+
+	 if(!empty($pageId)){
+	 $query = "select * from tbl_page where id='$pageId' ";
+	 $pages = $db->select($query);
+	 if($pages){
+		 while($result =$pages->fetch_assoc()){ ?>
+		 	<title><?= $result['name'];?>-<?= TITLE;?></title>
+	<?php	  } }  } else{ ?>
+		<title><?=$fm->title();?>-<?= TITLE;?></title>
+		<?php }  ?>
+	<title><?= TITLE;?></title>
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
 	<meta name="keywords" content="blog,cms blog">

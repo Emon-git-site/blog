@@ -26,12 +26,11 @@ if (!isset($_GET['category'])) {
                         <a href="post.php?id=<?= $result['id'] ?>">Read More</a>
                     </div>
                 </div>
-        <?php }
+            <?php }
         } else { ?>
-           <h3>No Post Available in this Category</h3>
-    <?php    } ?>
+            <h3>No Post Available in this Category</h3>
+        <?php    } ?>
     </div>
-</div>
 <?php
 require_once "inc/sidebar.php";
 require_once "inc/footer.php";
