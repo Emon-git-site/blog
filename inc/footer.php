@@ -1,5 +1,11 @@
-</div>
+<?php
+require_once "lib/Database.php";
+require_once "helpers/format.php";
 
+$db = new Database();
+$fm = new Format();
+?>
+</div>
 <div class="footersection templete clear">
   <div class="footermenu clear">
     <ul>
@@ -12,10 +18,14 @@
   <p>&copy; Copyright Training with live project.</p>
 </div>
 <div class="fixedicon clear">
-    <a href="http://www.facebook.com"><img src="images/fb.png" alt="Facebook"/></a>
-    <a href="http://www.twitter.com"><img src="images/tw.png" alt="Twitter"/></a>
-    <a href="http://www.linkedin.com"><img src="images/in.png" alt="LinkedIn"/></a>
-    <a href="http://www.google.com"><img src="images/gl.png" alt="GooglePlus"/></a>
+<?php
+  $query = "select * from tbl_social where id = '1' ";
+  $socialLink = $db->select($query);
+  $social = $socialLink->fetch_assoc()  ?>
+    <a href="<?=$social['fb']?>" target="_blank"><img src="images/fb.png" alt="Facebook"/></a>
+    <a href="<?=$social['tw']?>" target="_blank"><img src="images/tw.png" alt="Twitter"/></a>
+    <a href="<?=$social['ln']?>" target="_blank"><img src="images/in.png" alt="LinkedIn"/></a>
+    <a href="<?=$social['gp']?>" target="_blank"><img src="images/gl.png" alt="GooglePlus"/></a>
 </div>
 <script type="text/javascript" src="js/scrolltop.js"></script>
 </body>
