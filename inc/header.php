@@ -101,15 +101,32 @@ $(window).load(function() {
 		</div>
 	</div>
 <div class="navsection templete">
+<?php
+	$path = $_SERVER['SCRIPT_FILENAME'];
+	$currentPageName = basename($path, '.php');
+?>
 	<ul>
-		<li><a id="active" href="index.php">Home</a></li>
+		<li><a	
+		<?php
+		  if($currentPageName == 'index'){
+			echo 'id = "active" ';  } ?>
+		href="index.php">Home</a></li>
 		<?php   
             $query = "select * from tbl_page ";
             $pages = $db->select($query);
             if($pages){
                 while($result =$pages->fetch_assoc()){ ?>
-                    <li><a href="page.php?pageId=<?=$result['id']?>"><?=$result['name']?></a> </li>
+                    <li><a 
+					<?php
+						if(isset($_GET['pageId']) && $_GET['pageId']  == $result['id']){
+							echo 'id = "active" ';
+						}?>
+					href="page.php?pageId=<?=$result['id']?>"><?=$result['name']?></a> </li>
          <?php    }   }  ?>
-		<li><a href="contact.php">Contact</a></li>
+		<li><a
+		<?php
+		  if($currentPageName == 'contact'){
+			echo 'id = "active" '; } ?>
+		href="contact.php">Contact</a></li>
 	</ul>
 </div>
