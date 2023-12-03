@@ -2,7 +2,13 @@
   require_once "inc/header.php";
   require_once "inc/sidebar.php";
  ?>
-      
+      <?php
+       if(isset($_GET['categoryId'])){
+        $categoryId = $_GET['categoryId'];
+       }else{
+        header('location:catlist.php');
+       }
+     ?>
         <div class="grid_10">
 		
             <div class="box round first grid">
