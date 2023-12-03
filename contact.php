@@ -24,7 +24,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 	}elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) ) {
 	    $error = "Email is not  valid .";
 	}else{
-		$message = 'ok';
+		$query = "INSERT INTO tbl_contact(firstname, lastname, email, body)  VALUES('$firstName', '$lastName', '$email', '$body')";
+		$inserted_rows = $db->insert($query);
+		if ($inserted_rows) {
+			$message = "Message send successfully .";
+		}
+		else {
+			$message = "Message failed to send.";
+		}
 	}
 }
 ?>
