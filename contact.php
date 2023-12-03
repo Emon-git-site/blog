@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		echo "<span style='color:red'>$error</span>";
 	  }elseif(isset($message)){
 		echo "<span style='color:green'>$message</span>";
-	   }
+	    }
 	?>
 			<form action="" method="post">
 				<table>
