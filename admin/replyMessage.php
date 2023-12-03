@@ -13,11 +13,21 @@
         <div class="grid_10">
 		
             <div class="box round first grid">
-                <h2>View Message</h2>
+                <h2>Reply Message</h2>
                 <div class="block">   
              <?php
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                echo "<script>window.location = 'inbox.php';</script>";
+                $to = $fm->validation($_POST['toEmail']);
+                $from = $fm->validation($_POST['fromEmail']);
+                $subject = $fm->validation($_POST['subject']);
+                $message = $fm->validation($_POST['message']);
+
+                $sendMail = mail($to, $subject, $message, $from);
+                if($sendMail){
+                    echo "<span class='success'>Message Sent Successfully.</span>";
+                }else{
+                    echo "<span class='error'>Something went Wrong.</span>";
+                }
         }   ?>
 <?php
 $query = "select * from tbl_contact where id ='$messageId' ";
@@ -25,38 +35,30 @@ $message =  $db->select($query);
 if($message){
 $result = $message->fetch_assoc() ?>
 
-                  <form action="" method="POST" >
+                  <form action="" method="POST">
                      <table class="form">         
                          <tr>
                              <td>
-                                 <label>First Name</label>
+                                 <label>TO</label>
                              </td>
                              <td>
-                                 <input type="text" value="<?=$result['firstname']?>" class="medium" />
-                             </td>
-                         </tr>
-                         <tr>
-                             <td>
-                                 <label>Last Name</label>
-                             </td>
-                             <td>
-                                 <input type="text" value="<?=$result['lastname']?>" class="medium" />
+                                 <input type="email" name="toEmail" value="<?=$result['email']?>" class="medium" readonly/>
                              </td>
                          </tr>
                          <tr>
                              <td>
-                                 <label>Email</label>
+                                 <label>From</label>
                              </td>
                              <td>
-                                 <input type="email" value="<?=$result['email']?>" class="medium" />
+                                 <input type="email" name="fromEmail" placeholder="Please Enter your Email Address" class="medium" />
                              </td>
                          </tr>
                          <tr>
                              <td>
-                                 <label>Date</label>
+                                 <label>Subject</label>
                              </td>
                              <td>
-                                 <input type="text" value="<?=$fm->formatDate($result['date']) ?>" class="medium" />
+                                 <input type="text" name="subject" placeholder="Please Enter your subject " class="medium" />
                              </td>
                          </tr>
 
@@ -65,7 +67,7 @@ $result = $message->fetch_assoc() ?>
                                  <label>Message</label>
                              </td>
                              <td>
-                                 <textarea class="tinymce" ><?=$result['body']?></textarea>
+                                 <textarea class="tinymce" name="message"><?=$result['body']?></textarea>
                              </td>
                          </tr>
 
