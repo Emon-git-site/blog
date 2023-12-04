@@ -3,8 +3,11 @@
 class Session{
 
     public static function sessionInit(){
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
+    
     public static function set($key, $value){
        $_SESSION[$key] = $value;      
     }

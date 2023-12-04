@@ -1,3 +1,7 @@
+<?php
+require_once "../lib/Session.php";
+Session::sessionInit();
+?>
 <div class="grid_2">
             <div class="box sidemenu">
                 <div class="block" id="section-menu">
@@ -25,7 +29,10 @@
                         </li>
                         <li><a class="menuitem">Category Option</a>
                             <ul class="submenu">
+                        <?php
+                            if(Session::get('userRole') == 0){	?>
                                 <li><a href="addcat.php">Add Category</a> </li>
+                                <?php } ?>
                                 <li><a href="catlist.php">Category List</a> </li>
                             </ul>
                         </li>

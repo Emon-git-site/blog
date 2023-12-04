@@ -23,7 +23,10 @@
 						<tr>
 							<th>Serial No.</th>
 							<th>Category Name</th>
-							<th>Action</th>
+							<?php
+							if( Session::get('userRole') == 0){	?>
+							<th>Action</th> 
+							<?php  } ?>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,8 +40,10 @@
 						<tr class="odd gradeX">
 							<td><?=$serial; ?></td>
 							<td><?=$result['name']; ?></td>
+							<?php
+							if( Session::get('userRole') == 0){	?>
 							<td><a href="editCategory.php?categoryId=<?=$result['id']; ?>">Edit</a> || <a onclick="return confirm('Are you want to delete the category?')" href="?deleteCategoryId=<?=$result['id']; ?>">Delete</a></td>
-							<?php  }  } ?>
+							<?php  } } } ?>
 						</tr>
 					</tbody>
 				</table>

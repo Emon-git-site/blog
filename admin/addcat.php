@@ -2,6 +2,12 @@
   require_once "inc/header.php";
   require_once "inc/sidebar.php";
  ?>
+<?php
+if(Session::get('userRole') != 0){
+    header('location:catlist.php');
+}
+?>
+
         <div class="grid_10">
 		
             <div class="box round first grid">

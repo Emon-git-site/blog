@@ -2,12 +2,15 @@
   require_once "inc/header.php";
   require_once "inc/sidebar.php";
  ?>
-      <?php
-       if(isset($_GET['categoryId'])){
-        $categoryId = $_GET['categoryId'];
-       }else{
-        header('location:catlist.php');
-       }
+<?php            
+if (empty($_GET)) {
+    echo '<script>window.location.href = "catlist.php";</script>';
+}
+else{
+     if (isset($_GET['categoryId']) && Session::get('userRole') == 0) {
+         $categoryId = $_GET['categoryId'];
+      }
+     }
      ?>
         <div class="grid_10">
 		

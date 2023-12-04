@@ -2,71 +2,21 @@
   require_once "inc/header.php";
   require_once "inc/sidebar.php";
  ?>
- <?php
-    if(!isset($_GET['editPostId'])){
+    <?php
+       if(isset($_GET['viewPostId'])){
+        $postId = $_GET['viewPostId'];
+       }else{
         header('location:postlist.php');
-    }else{
-        $postId = $_GET['editPostId'];
-    }
- ?>
-
-        <div class="grid_10">
-		
+       }
+     ?>
+        <div class="grid_10">	
             <div class="box round first grid">
-                <h2>Update Post</h2>
+                <h2>User Data</h2>
                 <div class="block">   
              <?php
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                $title = mysqli_real_escape_string($db->link, $_POST['title']);
-                $cat = mysqli_real_escape_string($db->link, $_POST['cat']);
-                $body = mysqli_real_escape_string($db->link, $_POST['body']);
-                $tags = mysqli_real_escape_string($db->link, $_POST['tags']);
-                $author = mysqli_real_escape_string($db->link, $_POST['author']);
-                $userId = $_POST['userId'];
-
-                $permited  = array('jpg', 'jpeg', 'png', 'gif');
-                $file_name = $_FILES['image']['name'];
-                $file_size = $_FILES['image']['size'];
-                $file_temp = $_FILES['image']['tmp_name'];
-            
-                $div = explode('.', $file_name);
-                $file_ext = strtolower(end($div));
-                $uploaded_image = substr(md5(time()), 0, 10).'.'.$file_ext;
-
-                if($title == '' ||  $cat == '' ||  $body == '' ||  $tags == '' ||  $author == '' ){
-                    echo "<span class='error'>Field must not be empty.</span>";
-                }else{
-                if(!empty($file_name)){
-                    if ($file_size >1048567) {
-                        echo "<span class='error'>Image Size should be less then 1MB!</span>";
-                    } 
-                    elseif (in_array($file_ext, $permited) === false) {
-                        echo "<span class='error'>You can upload only:-" .implode(', ', $permited)."</span>";
-                    }
-                        else{
-
-                            move_uploaded_file($file_temp, "upload/".$uploaded_image);
-                            $query = "update tbl_post set cat = '$cat', title = '$title', body = '$body', image = '$uploaded_image', author = '$author', tags = '$tags', user_id = '$userId' where id ='$postId ' ";
-                            $updated_rows = $db->update($query);
-                            if ($updated_rows) {
-                                echo "<span class='success'>Post Updated Successfully. </span>";
-                            }
-                            else {
-                                echo "<span class='error'>Post Not Updated !</span>";
-                            }
-                    }
-             }else{
-                $query = "update tbl_post set cat = '$cat', title = '$title', body = '$body', author = '$author', tags = '$tags', user_id = '$userId' where id ='$postId ' ";
-                $updated_rows = $db->update($query);
-                if ($updated_rows) {
-                    echo "<span class='success'>Post Updated Successfully. </span>";
-                }
-                else {
-                    echo "<span class='error'>Post Not Updated !</span>";
-                }
-             }
+                echo '<script>window.location.href = "postlist.php";</script>';
             }
-        }
             ?>
             <?php
                 // post data show
@@ -116,7 +66,7 @@
                              </td>
                              <td>
                              <img src="upload/<?=$result['image']?>" height="40px" width="60px">
-                                 <input type="file" name="image"/>
+                                 <input type="file" />
                              </td>
                          </tr>
                          <tr>
@@ -124,7 +74,7 @@
                                  <label>Content</label>
                              </td>
                              <td>
-                                 <textarea class="tinymce" name="body"><?=$result['body'] ?></textarea>
+                                 <textarea class="tinymce" ><?=$result['body'] ?></textarea>
                              </td>
                          </tr>
                          <tr>
@@ -132,7 +82,7 @@
                                  <label>Tags</label>
                              </td>
                              <td>
-                                 <input type="text" name="tags" value="<?=$result['tags'] ?>" class="medium" />
+                                 <input type="text"  value="<?=$result['tags'] ?>" class="medium" />
                              </td>
                          </tr>
                          <tr>
@@ -140,14 +90,13 @@
                                  <label>Author</label>
                              </td>
                              <td>
-                                 <input type="text" name="author" value="<?=$result['author'] ?>" class="medium" />
-                                 <input type="hidden" name="userId" value="<?=Session::get('userId') ?>" class="medium" />
+                                 <input type="text"  value="<?=$result['author'] ?>" class="medium" />
                              </td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>
-                                 <input type="submit" name="submit" Value="Update" />
+                                 <input type="submit" name="submit" Value="Ok" />
                              </td>
                          </tr>
                      </table>
