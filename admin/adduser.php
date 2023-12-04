@@ -2,6 +2,12 @@
   require_once "inc/header.php";
   require_once "inc/sidebar.php";
  ?>
+ <?php
+ if(Session::get('userRole') != 0){
+    echo '<script>window.location.href = "index.php";</script>';
+
+ }
+ ?>
         <div class="grid_10">
 		
             <div class="box round first grid">

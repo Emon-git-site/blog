@@ -59,8 +59,12 @@
                              }
                             ?>
                             </td>
-							<td><a href="viewUser.php?userId=<?=$result['id']; ?>">View</a> || <a onclick="return confirm('Are you want to delete the user?')" href="?deleteUserId=<?=$result['id']; ?>">Delete</a></td>
-							<?php  }  } ?>
+							<td><a href="viewUser.php?userId=<?=$result['id']; ?>">View</a>
+                            <?php
+                                $userRole = Session::get('userRole');
+                                if($userRole == 0){ ?>
+                             || <a onclick="return confirm('Are you want to delete the user?')" href="?deleteUserId=<?=$result['id']; ?>">Delete</a></td>
+							<?php } }  } ?>
 						</tr>
 					</tbody>
 				</table>

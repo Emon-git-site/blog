@@ -107,7 +107,7 @@
                                  <label>Author</label>
                              </td>
                              <td>
-                                 <input type="text" name="author" placeholder="Enter Author Name..." class="medium" />
+                                 <input type="text" name="author" value="<?=Session::get('name') ?>" class="medium" />
                              </td>
                          </tr>
                          <tr>
