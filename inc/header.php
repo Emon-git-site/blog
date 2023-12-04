@@ -34,6 +34,17 @@ $fm = new Format();
 	<title><?= TITLE;?></title>
 	<meta name="language" content="English">
 	<meta name="description" content="It is a website about education">
+	<?php
+	  if(isset($_GET['id'])){
+		$keywordId = $_GET['id'];
+		$query = "select * from tbl_post where id='$keywordId' ";
+		$keyword = $db->select($query);
+		if($keyword){
+			while($result = $keyword->fetch_assoc()){ ?>
+			<meta name="keywords" content="<?=$result['tags'];?>">
+	<?php  } }  else{ ?>
+		<meta name="keywords" content="<?=KEYWORDS?>"> 
+	<?php }  } ?>
 	<meta name="keywords" content="blog,cms blog">
 	<meta name="author" content="Delowar">
 	<link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.css">	

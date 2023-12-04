@@ -93,7 +93,7 @@ $fm = new Format();
                             $count = mysqli_num_rows($message);
                             echo "(".$count.")";
                         }else{
-                            echo "(0)";
+                            echo "(0)"; 
                         }
                     ?>
                 </span></a></li>
