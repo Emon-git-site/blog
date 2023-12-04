@@ -96,7 +96,7 @@
 							<td><?=$fm->textShorten($result['body'], 30) ?></td>
 							<td><?=$fm->formatDate($result['date']) ?></td>
 							<td>
-							<a href="viewMessage.php?messageId=<?=$result['id']?>">view</a> ||
+							<a href="viewMessage.php?messageId=<?=$result['id']?>">view</a> || 
 								<a href="?deleteMessageId=<?=$result['id']?>" onclick="return confirm('Are you sure want to delete')">Delete</a> 
 							</td>
 						</tr>
