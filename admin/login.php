@@ -29,8 +29,9 @@ $fm = new Format();
 			 if($result != false){
 				$userData = mysqli_fetch_array($result);
 					Session::set("login", true);
+					Session::set("name", $userData['name']);
 					Session::set("userId", $userData['id']);
-					Session::set("userName", $userData['username']);
+					Session::set("userRole", $userData['role']);
 					header('location:index.php');
 			 }else{
 				echo "<span style='color:red; font-size:18px;'>Username or Password not matched !! .</span>" ;
