@@ -15,7 +15,7 @@ Session::sessionInit();
                             </ul>
                         </li>
 						
-                         <li><a class="menuitem">Pages</a>
+                         <li><a class="menuitem">Pages Option</a>
                             <ul class="submenu">
                             <li><a href="addpage.php">Add New Page</a> </li>
             <?php   
@@ -34,6 +34,15 @@ Session::sessionInit();
                                 <li><a href="addcat.php">Add Category</a> </li>
                                 <?php } ?>
                                 <li><a href="catlist.php">Category List</a> </li>
+                            </ul>
+                        </li>
+                        <li><a class="menuitem">Slider Option</a>
+                            <ul class="submenu">
+                        <?php
+                            if(Session::get('userRole') == 0){	?>
+                                <li><a href="addSlider.php">Add Slider</a> </li>
+                                <?php } ?>
+                                <li><a href="sliderList.php">Slider List</a> </li>
                             </ul>
                         </li>
                         <li><a class="menuitem">Post Option</a>
