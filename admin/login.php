@@ -26,7 +26,7 @@ $fm = new Format();
 
 			 $query = "select * from tbl_user where username = '$userName' and password = '$password' ";
 			 $result = $db->select($query);
-			 if($result->num_rows == 1 ){
+			 if($result){
 				$userData = $result->fetch_assoc();
 					Session::set("login", true);
 					Session::set("name", $userData['name']);
@@ -51,9 +51,12 @@ $fm = new Format();
 				<input type="submit" value="Log in" />
 			</div>
 		</form><!-- form -->
+		<div class="button" style="color:green">
+			<a href="forgetPassword.php">Forgot Password !</a>
+		</div><!-- button -->
 		<div class="button">
 			<a href="#">Training with live project</a>
-		</div><!-- button -->
+		</div><!-- button -->	
 	</section><!-- content -->
 </div><!-- container -->
 </body>
