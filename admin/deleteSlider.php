@@ -16,8 +16,8 @@ $fm = new Format();
      $query = "select * from tbl_slider where id = '$slierId' ";
      $sliderData = $db->select($query);
      if($sliderData){
-        while($postData = $sliderData->fetch_assoc()){
-            $imageLink = 'upload/slider/'.$postData['image'];
+        while($slider= $sliderData->fetch_assoc()){
+            $imageLink = 'upload/slider/'.$slider['image'];
             unlink($imageLink);
         }
      }
