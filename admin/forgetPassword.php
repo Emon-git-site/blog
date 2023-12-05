@@ -50,7 +50,7 @@ $fm = new Format();
                     }
     
                 }
-                .else{
+                else{
                    echo "<span style='color:red; font-size:18px;'>Email Address not Found !! .</span>" ;
                 }
             }
