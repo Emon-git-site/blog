@@ -13,27 +13,38 @@
             <div class="box round first grid">
                 <h2>Add New User</h2>
                <div class="block copyblock"> 
-               <?php
+     <?php
 		  if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $userName = $fm->validation($_POST['username']);
             $password = $fm->validation($_POST['password']);
+            $email = $fm->validation($_POST['email']);
             $role = $fm->validation($_POST['role']);
 
 			 $userName = mysqli_real_escape_string($db->link, $userName);
 			 $password = mysqli_real_escape_string($db->link, $password);
+			 $email = mysqli_real_escape_string($db->link, $email);
 			 $role = mysqli_real_escape_string($db->link, $role);
 
-             if(empty($userName) || empty($password) || empty($role)){
+             if(empty($userName) || empty($password) || empty($role) || empty($email) ){
                 echo "<span class='error'>Field must not be empty.</span>";
              }else{
-                $query = "insert into tbl_user(username, password, role) values ('$userName', '$password', '$role')";
-                $addUser = $db->insert($query);
-                if($addUser){
-                    echo "<span class='success'>New User Create Successfully.</span>";
-                }else{
-                    echo "<span class='error'>New User Create Fialed.</span>";
-                }
+
+                 $emailQuery = "select * from tbl_user where email = '$email' limit 1 ";
+                 $ceheckEmail =  $db->select($emailQuery);
+                 if($ceheckEmail == true){
+                    echo "<span class='error'>Your provided email already exit.</span>";
+                 }else{
+
+                    $query = "insert into tbl_user(username, password, role, email) values ('$userName', '$password', '$role', '$email')";
+                    $addUser = $db->insert($query);
+                    if($addUser){
+                        echo "<span class='success'>New User Create Successfully.</span>";
+                    }else{
+                        echo "<span class='error'>New User Create Fialed.</span>";
+                    }
+                 }
              }
+              
           }  
           ?>
                  <form action="" method="post">
@@ -52,6 +63,14 @@
                             </td>
                             <td>
                                 <input type="text" name="password" placeholder="Enter Password..." class="medium" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="">Email</label>
+                            </td>
+                            <td>
+                                <input type="email" name="email" placeholder="Enter valid Email..." class="medium" />
                             </td>
                         </tr>
                         <tr>

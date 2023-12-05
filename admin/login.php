@@ -26,8 +26,8 @@ $fm = new Format();
 
 			 $query = "select * from tbl_user where username = '$userName' and password = '$password' ";
 			 $result = $db->select($query);
-			 if($result != false){
-				$userData = mysqli_fetch_array($result);
+			 if($result->num_rows == 1 ){
+				$userData = $result->fetch_assoc();
 					Session::set("login", true);
 					Session::set("name", $userData['name']);
 					Session::set("userId", $userData['id']);

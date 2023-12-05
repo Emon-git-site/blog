@@ -31,7 +31,7 @@
                                  <label>Name</label>
                              </td>
                              <td>
-                                 <input type="text"readonly value="<?=$result['name'] ?>" class="medium" />
+                                 <input type="text" value="<?=$result['name'] ?>" class="medium" />
                              </td>
                          </tr>
                          <tr>
