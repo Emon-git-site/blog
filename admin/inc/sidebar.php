@@ -8,7 +8,7 @@ Session::sessionInit();
             <ul class="section menu">
                 <li><a class="menuitem">Site Option</a>
                     <ul class="submenu">
-                        <li><a href="titleslogan.php">Title & Slogan</a></li>
+                        <li><a href="titleslogan.php">Title  & Slogan</a></li>
                         <li><a href="social.php">Social Media</a></li>
                         <li><a href="copyright.php">Copyright</a></li>
 
