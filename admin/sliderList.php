@@ -25,7 +25,7 @@ require_once "inc/sidebar.php";
 							$serial++ ?>
 							<tr class="odd gradeX">
 								<td><?= $serial ?></td>
-								<td><?= $fm->textShorten($result['title'], 60) ?></td>
+								<td><?=$result['title']?></td>
 								<td><img src="upload/slider/<?= $result['image'] ?>" height="40px" width="60px"></td>
 								<td>
 						<?php
