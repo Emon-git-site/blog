@@ -10,8 +10,10 @@
              <?php
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $title = mysqli_real_escape_string($db->link, $_POST['title']);
+                $alt = mysqli_real_escape_string($db->link, $_POST['alt']);
 
-                $permited  = array('jpg', 'jpeg', 'png', 'gif');
+
+                $permited  = array('jpg');
                 $file_name = $_FILES['image']['name'];
                 $file_size = $_FILES['image']['size'];
                 $file_temp = $_FILES['image']['tmp_name'];
@@ -31,7 +33,7 @@
                    }
                     else{
                         move_uploaded_file($file_temp, "upload/slider/".$uploaded_image);
-                        $query = "INSERT INTO tbl_slider(title, image)  VALUES('$title', '$uploaded_image')";
+                        $query = "INSERT INTO tbl_slider(title, image, alt)  VALUES('$title', '$uploaded_image', '$alt')";
                         $inserted_rows = $db->insert($query);
                         if ($inserted_rows) {
                             echo "<span class='success'>Slider  Inserted Successfully. </span>";
@@ -50,6 +52,14 @@
                              </td>
                              <td>
                                  <input type="text" name="title" placeholder="Enter Post Title..." class="medium" />
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <label>ALT</label>
+                             </td>
+                             <td>
+                                 <input type="text" name="alt" placeholder="Enter imgage alt tag name..." class="medium" />
                              </td>
                          </tr>
  

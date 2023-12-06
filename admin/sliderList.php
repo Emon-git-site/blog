@@ -12,6 +12,7 @@ require_once "inc/sidebar.php";
 						<th>Serial</th>
 						<th>Slider Title</th>
 						<th>Image</th>
+						<th>Image alt tag</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -27,6 +28,7 @@ require_once "inc/sidebar.php";
 								<td><?= $serial ?></td>
 								<td><?=$result['title']?></td>
 								<td><img src="upload/slider/<?= $result['image'] ?>" height="40px" width="60px"></td>
+								<td><?=$result['alt']?></td>
 								<td>
 						<?php
 						   if( Session::get('userRole') == 0){	?>

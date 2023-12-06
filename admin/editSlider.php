@@ -13,11 +13,12 @@
         <div class="grid_10">
 		
             <div class="box round first grid">
-                <h2>Update Slider</h2>
+                <h2>Update Slider <span style="float: right;"><a href="sliderList.php" style="border: 1px solid green;" >back</a></span></h2>
                 <div class="block">   
              <?php
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $title = mysqli_real_escape_string($db->link, $_POST['title']);
+                $alt = mysqli_real_escape_string($db->link, $_POST['alt']);
 
                 $permited  = array('jpg', 'jpeg', 'png', 'gif');
                 $file_name = $_FILES['image']['name'];
@@ -41,7 +42,7 @@
                         else{
 
                             move_uploaded_file($file_temp, "upload/slider/".$uploaded_image);
-                            $query = "update tbl_slider set  title = '$title', image = '$uploaded_image' where id ='$sliderId ' ";
+                            $query = "update tbl_slider set  title = '$title', image = '$uploaded_image', alt = '$alt' where id ='$sliderId ' ";
                             $updated_rows = $db->update($query);
                             if ($updated_rows) {
                                 echo "<span class='success'>Slider Updated Successfully. </span>";
@@ -51,7 +52,7 @@
                             }
                     }
              }else{
-                $query = "update tbl_slider set  title = '$title' where id ='$sliderId ' ";
+                $query = "update tbl_slider set  title = '$title', alt = '$alt' where id ='$sliderId ' ";
                 $updated_rows = $db->update($query);
                 if ($updated_rows) {
                     echo "<span class='success'>Slider Updated Successfully. </span>";
@@ -77,6 +78,14 @@
                              </td>
                              <td>
                                  <input type="text" name="title" value="<?=$result['title'] ?>" class="medium" />
+                             </td>
+                         </tr>
+                         <tr>
+                             <td>
+                                 <label>Alt</label>
+                             </td>
+                             <td>
+                                 <input type="text" name="alt" value="<?=$result['alt'] ?>" class="medium" />
                              </td>
                          </tr>
  
