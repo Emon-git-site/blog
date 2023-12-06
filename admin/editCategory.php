@@ -15,7 +15,7 @@ else{
         <div class="grid_10">
 		
             <div class="box round first grid">
-                <h2>Update Category</h2>
+            <h2>Update Slider <span style="float: right;"><a href="catlist.php" style="border: 1px solid green;" >back</a></span></h2>
                <div class="block copyblock"> 
                <?php
 		  if($_SERVER['REQUEST_METHOD'] == 'POST'){

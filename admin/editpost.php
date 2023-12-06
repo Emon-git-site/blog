@@ -3,17 +3,16 @@
   require_once "inc/sidebar.php";
  ?>
  <?php
-    if(!isset($_GET['editPostId'])){
+   $postId = mysqli_real_escape_string($db->link, $_GET['editPostId']);
+    if(!isset($postId)){
         header('location:postlist.php');
-    }else{
-        $postId = $_GET['editPostId'];
     }
  ?>
 
         <div class="grid_10">
 		
             <div class="box round first grid">
-                <h2>Update Post</h2>
+            <h2>Update Slider <span style="float: right;"><a href="postlist.php" style="border: 1px solid green;" >back</a></span></h2>
                 <div class="block">   
              <?php
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
